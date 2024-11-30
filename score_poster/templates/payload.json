@@ -1,0 +1,56 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "Your daily Advent of Code reminder",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "It's time for a new day in <https://adventofcode.com/|Advent of Code>! Ask for help if you get stuck, and good luck!"
+      },
+      "accessory": {
+        "type": "image",
+        "image_url": "https://robohash.org/<< now.strftime('%Y%m%d%H%M%S') >>",
+        "alt_text": "cute cat"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*Name*"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Score (:star:s)*"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    }<%- for player in scoreboard %>,
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "<< player.name >>"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "<< player.local_score >> (<< player.stars >>)"
+        }
+      ]
+    }<%- endfor %>
+  ]
+}
