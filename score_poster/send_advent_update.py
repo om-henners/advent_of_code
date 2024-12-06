@@ -23,6 +23,7 @@ def get_aoc_leaderboard() -> list[dict[str, Any]]:
     return sorted(
         data["members"].values(),
         key=lambda d: (d.get("local_score"), d.get("starts"), d.get("name")),
+        reverse=True,
     )
 
 
