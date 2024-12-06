@@ -3,7 +3,7 @@ from skimage.morphology import dilation
 from skimage.segmentation import flood_fill
 
 
-lines = np.loadtxt("sample", dtype=str, comments=None)
+lines = np.loadtxt("input", dtype=str, comments=None)
 data = lines.view("U1").reshape((lines.size, -1))
 
 structure = np.array([[0, 1, 0], [0, 1, 0], [0, 0, 0]], dtype=np.uint8)
