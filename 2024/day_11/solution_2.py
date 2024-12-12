@@ -1,29 +1,23 @@
 from functools import cache
-from itertools import chain
-from typing import Iterator
 
 
-# @lru_cache(maxsize=10000)
 @cache
-def blink(engraving: int) -> Iterator[int]:
+def blink(engraving: int, depth: int) -> int:
+    if depth == 0:
+        return 1  # stone
+
     if engraving == 0:
-        return (1,)
+        return blink(1, depth - 1)
 
     text = str(engraving)
     if len(text) % 2 == 0:
         left, right = text[: len(text) // 2], text[len(text) // 2 :]
-        return (int(left), int(right))
+        return blink(int(left), depth - 1) + blink(int(right), depth - 1)
 
-    return (engraving * 2024,)
+    return blink(engraving * 2024, depth - 1)
 
 
-data = [int(val) for val in open("sample").read().strip().split(" ")]
+data = map(int, open("input").read().split())
 
-data = [0]
-
-for _ in range(75):
-    data = chain.from_iterable(blink(v) for v in data)
-
-result = list(data)
-# print(result)
-print(len(result))
+print(sum(blink(val, 75) for val in data))
+# 236804088748754
