@@ -1,0 +1,8 @@
+Value List X (\d+)
+Value List Y (\d+)
+Value PRIZE_X (\d+)
+Value PRIZE_Y (\d+)
+
+Start
+  ^Button \w: X\+${X}, Y\+${Y}
+  ^Prize: X=${PRIZE_X}, Y=${PRIZE_Y} -> Record
